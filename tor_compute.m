@@ -72,13 +72,14 @@ K(:,61:60+nf*6)=Kf;
 % K = [K,Kf];
 
 %% 线性回归矩阵消除全为0的列, 未注释代码等同于注释代码，因为不知道find函数代码生成
-C_k=Self_Find(K);
-K_d=zeros(6*n,length(C_k));
-for i=1:length(C_k)
-    K_d(:,i)=K(:,C_k(i));
-end
+% C_k=Self_Find(K);
+% K_d=zeros(6*n,length(C_k));
+% for i=1:length(C_k)
+%     K_d(:,i)=K(:,C_k(i));
+% end
 % K_d = K(:,find(sum(abs(K))'>sqrt(eps)));
 % disp(isequal(K_d,K_d1));      %对比结果
+K_d = [K(:,10),K(:,12:13),K(:,15:end)];
 %%
 % QR分解，得到与最小参数集对应的线性回归矩阵
 %[~,R,P] = qr(K_d);
@@ -89,7 +90,8 @@ P = data1.P;
 n_d = rank(K_d);
 
 KK = K_d*P;
-KK_m = KK(:,1:n_d);
+% KK_m = KK(:,1:n_d);
+KK_m = KK(:,1:size(data1.para_all,1));
 % 代入辨识的最小参数集
 para_all = data1.para_all;
 
@@ -120,12 +122,13 @@ end
 %    K = [K,Kf];
 K(:,61:60+nf*6)=Kf;
 %% 线性回归矩阵消除全为0的列, 未注释代码等同于注释代码，因为不知道find函数代码生成C_k=Self_Find(K);
-K_d=zeros(6*n,length(C_k));
-for i=1:length(C_k)
-    K_d(:,i)=K(:,C_k(i));
-end
+% K_d=zeros(6*n,length(C_k));
+% for i=1:length(C_k)
+%     K_d(:,i)=K(:,C_k(i));
+% end
 % K_d = K(:,find(sum(abs(K))'>sqrt(eps)));
 % disp(isequal(K_d,K_d1));      %对比结果
+K_d = [K(:,10),K(:,12:13),K(:,15:end)];
 %%
 % QR分解，得到与最小参数集对应的线性回归矩阵
 %[~,R,P] = qr(K_d);
@@ -136,7 +139,8 @@ P = data1.P;
 n_d = rank(K_d);
 
 KK = K_d*P;
-KK_m = KK(:,1:n_d);
+% KK_m = KK(:,1:n_d);
+KK_m = KK(:,1:size(data1.para_all,1));
 % 代入辨识的最小参数集
 para_all = data1.para_all;
 
