@@ -56,8 +56,9 @@ loadpath1 = 'para_20s_1_0kg_5f.mat';
 data1 = load(loadpath1);
 
 % 计算线性回归矩阵
-% J = []; K = []; Kf = [];
-J=zeros(6*n,6);K=zeros(6*n,60+nf*6);Kf=zeros(n,nf*6);
+% J = []; K = []; 
+% Kf = [];
+J=zeros(6*n,6);K=zeros(6*n,60+nf*6);Kf=zeros(6*n,nf*6);
 for i = 1:n
     [J_temp,K_temp,Kf_temp] = Compute_Dynmatrix(q(:,i), dq(:,i), ddq(:,i), g, dh_list, nf);
     J(6*(i-1)+1:6*i,:)=J_temp;
@@ -108,7 +109,7 @@ data1 = load(loadpath1);
 
 % 计算线性回归矩阵
 % J = []; K = []; Kf = [];
-J=zeros(6*n,6);K=zeros(6*n,60+nf*6);Kf=zeros(n,nf*6);
+J=zeros(6*n,6);K=zeros(6*n,60+nf*6);Kf=zeros(6*n,nf*6);
 for i = 1:n
     [J_temp,K_temp,Kf_temp] = Compute_Dynmatrix(q(:,i), dq(:,i), ddq(:,i), g, dh_list, nf);
     J(6*(i-1)+1:6*i,:)=J_temp;
